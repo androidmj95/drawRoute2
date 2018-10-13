@@ -103,8 +103,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng SYDNEY = new LatLng(-33.88,151.21);
         final MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SYDNEY);
-       // mMap.addMarker(markerOptions);
-       // mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
+        // mMap.addMarker(markerOptions);
+        // mMap.moveCamera(CameraUpdateFactory.newLatLng(SYDNEY));
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -146,11 +146,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private String getRequestUrl(LatLng origin, LatLng dest) {
 
-        String str_org = "origin" + origin.latitude + "," + origin.longitude;
-        String str_dest = "destination" + dest.latitude + "," + dest.longitude;
+        String str_org = "origin=" + origin.latitude + "," + origin.longitude;
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
         String sensor = "sensor-false";
-        String mode = "mode-driving";
-        String param = str_org+"&"+str_dest+"&"+sensor+"&"+mode;
+        String mode = "mode=driving";
+        String key = "key=AIzaSyDqkRIwhY2W3UoK29aZofbRBDU4s3C5XxU";
+        String param = str_org+"&"+str_dest+"&"+mode+"&"+key;
         String output = "json";
         String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+param;
         return url;
@@ -197,7 +198,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    public class TaskRequestDirections extends AsyncTask<String, Void,String>{
+    public class TaskRequestDirections extends AsyncTask<String,Void,String>{
 
         @Override
         protected String doInBackground(String... strings) {
